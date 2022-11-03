@@ -39,20 +39,18 @@ const validateSignUp = async (req, res, next) => {
     res.status(500).json({ message: ERROR_MSGS.INTERNAL_SERVER_ERROR });
   }
 };
-
-const validateGetUserList = async (req, res, next) => {
+const validatePostList = async (req, res, next) => {
   try {
-    const { listid } = req.params;
+    const { listName, userid } = req.body;
+    const isRequestValid = [listName, userid].some(
+      (value) => value !== undefined
+    );
     const errorMessage = [];
 
-    const data = await knex
-      .select("*")
-      .from("users_in_list")
-      .where({ list_id: listid });
+    if (!isRequestValid) errorMessage.push(ERROR_MSGS.INVALID_INPUT);
+    if (!listName) errorMessage.push(ERROR_MSGS.INVALID_INPUT);
+    if (!userid) errorMessage.push(ERROR_MSGS.INVALID_INPUT);
 
-    if (data.length <= 0) {
-      errorMessage.push(ERROR_MSGS.NOT_FOUND);
-    }
     if (errorMessage.length > 0) {
       res.status(400).json({
         message: ERROR_MSGS.VALIDATION_ERROR,
@@ -69,4 +67,7 @@ const validateGetUserList = async (req, res, next) => {
   }
 };
 
-module.exports = { validateSignUp, validateGetUserList };
+module.exports = {
+  validateSignUp,
+  validatePostList,
+};
