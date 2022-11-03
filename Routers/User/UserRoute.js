@@ -1,9 +1,9 @@
 const express = require("express");
 const router = express.Router();
 const user_ctrl = require("../../Controllers/User/UserController");
+const { validateSignUp } = require("../../Controllers/validationMiddleWare");
 
-router.get("/:userid", user_ctrl.getUserById); // GET/user/1
-router.get("/list/:listid", user_ctrl.getUsersInList); // GET/user/:list
-router.post("/signup/", user_ctrl.signup); // POST/user/{body}
-// router.delete("/:userid"); // DELETE/user/1
+router.get("/:userid", user_ctrl.getUserById);
+router.get("/list/:listid", user_ctrl.getUsersInList);
+router.post("/signup/", validateSignUp, user_ctrl.signup);
 module.exports = router;
