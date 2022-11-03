@@ -24,23 +24,23 @@ const {
   getUserData,
   getAllUsersInList,
   getAllListsOnUser,
-} = require("./handler/knex.get");
+} = require("./server/handler/knex.get");
 
 const {
   addList,
   addUser,
   addItemsToList,
   addUserTolist,
-} = require("./handler/knex.post");
+} = require("./server/handler/knex.post");
 
 const {
   deleteUser,
   deleteList,
   deleteItemInList,
   deleteUserFromList,
-} = require("./handler/knex.delete");
+} = require("./server/handler/knex.delete");
 
-const { updateItemState } = require("./handler/knex.put");
+const { updateItemState } = require("./server/handler/knex.put");
 
 //GET METHOD
 
