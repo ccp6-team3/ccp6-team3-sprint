@@ -39,4 +39,5 @@ const validateSignUp = async (req, res, next) => {
     res.status(500).json({ message: ERROR_MSGS.INTERNAL_SERVER_ERROR });
   }
 };
+
 module.exports = { validateSignUp };
