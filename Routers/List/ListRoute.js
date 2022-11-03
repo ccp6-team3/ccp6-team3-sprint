@@ -9,5 +9,6 @@ router.post("/", list_ctrl.postList);
 router.post("/item", list_ctrl.postItem);
 router.post("/user", list_ctrl.postUser);
 router.delete("/:listid", list_ctrl.deleteList);
-router.delete("/:listid/:itemName", list_ctrl.deleteItemFromList);
+router.delete("/:listid/item/:itemName", list_ctrl.deleteItemFromList);
+router.delete("/:listid/user/:userid", list_ctrl.deleteUserFromList);
 module.exports = router;

@@ -136,5 +136,20 @@ const ListController = {
       res.status(500).json({ message: "Internal Error" });
     }
   },
+  deleteUserFromList: async (req, res) => {
+    try {
+      const { listid, userid } = req.params;
+      console.log(listid, userid);
+      const data = await knex("users_in_list")
+        .where({ list_id: listid, user_id: userid })
+        .del()
+        .returning(["*"]);
+      console.log(data);
+      res.status(200).json(data[0]);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ message: "Internal Error" });
+    }
+  },
 };
 module.exports = ListController;
