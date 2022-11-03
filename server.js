@@ -20,8 +20,6 @@ app.use("/user", userRoutes);
 app.use("/list", listRoutes);
 app.use("/item", itemRoutes);
 
-const { getAllListsOnUser } = require("./server/handler/knex.get");
-
 const {
   addList,
   addUser,
