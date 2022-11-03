@@ -40,4 +40,33 @@ const validateSignUp = async (req, res, next) => {
   }
 };
 
-module.exports = { validateSignUp };
+const validateGetUserList = async (req, res, next) => {
+  try {
+    const { listid } = req.params;
+    const errorMessage = [];
+
+    const data = await knex
+      .select("*")
+      .from("users_in_list")
+      .where({ list_id: listid });
+
+    if (data.length <= 0) {
+      errorMessage.push(ERROR_MSGS.NOT_FOUND);
+    }
+    if (errorMessage.length > 0) {
+      res.status(400).json({
+        message: ERROR_MSGS.VALIDATION_ERROR,
+        error: JSON.stringify(errorMessage),
+      });
+      return;
+    } else {
+      next();
+      return;
+    }
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: ERROR_MSGS.INTERNAL_SERVER_ERROR });
+  }
+};
+
+module.exports = { validateSignUp, validateGetUserList };
