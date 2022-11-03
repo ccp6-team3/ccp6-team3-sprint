@@ -20,7 +20,6 @@ app.use("/list", listRoutes);
 
 const {
   deleteUser,
-  deleteList,
   deleteItemInList,
   deleteUserFromList,
 } = require("./server/handler/knex.delete");
