@@ -22,5 +22,26 @@ const UserController = {
       res.status(500).json({ message: "Internal Error" });
     }
   },
+  getUsersInList: async (req, res) => {
+    try {
+      const { listid } = req.params;
+      console.log(listid);
+      const data = await knex
+        .select({
+          userId: "user_id",
+          userName: "user_name",
+          userEmail: "user_email",
+          userProPic: "user_pro_pic",
+        })
+        .from("users_in_list")
+        .join("users", { "users.id": "users_in_list.user_id" })
+        .where("users_in_list.list_id", "=", listid);
+      console.log(data);
+      res.status(200).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ message: "Internal Error" });
+    }
+  },
 };
 module.exports = UserController;
