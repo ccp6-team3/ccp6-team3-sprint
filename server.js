@@ -18,11 +18,7 @@ app.use((req, res, next) => {
 app.use("/user", userRoutes);
 app.use("/list", listRoutes);
 
-const {
-  deleteUser,
-  deleteItemInList,
-  deleteUserFromList,
-} = require("./server/handler/knex.delete");
+const { deleteUserFromList } = require("./server/handler/knex.delete");
 
 const { updateItemState } = require("./server/handler/knex.put");
 
