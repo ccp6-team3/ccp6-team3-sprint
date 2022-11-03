@@ -1,7 +1,7 @@
 require("dotenv").config();
 const knex = require("../../db/knex");
 const ListController = {
-  getAllList: async (req, res) => {
+  getAllLists: async (req, res) => {
     try {
       const data = await knex
         .select({
@@ -30,6 +30,22 @@ const ListController = {
         .where("lists.list_owner", "=", userid);
       console.log(data);
       res.status(200).json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ message: "Internal Error" });
+    }
+  },
+  postList: async (req, res) => {
+    try {
+      const { listName, userid } = req.body;
+      console.log(listName, userid);
+      const newList = {
+        list_name: listName,
+        list_owner: userid,
+      };
+      const data = await knex("lists").returning(["id"]).insert(newList);
+      console.log(data);
+      res.status(200).json(data[0]);
     } catch (error) {
       console.log(error);
       res.status(500).json({ message: "Internal Error" });
