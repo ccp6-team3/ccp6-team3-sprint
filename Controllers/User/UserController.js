@@ -1,5 +1,7 @@
 require("dotenv").config();
 const knex = require("../../db/knex");
+const { ERROR_MSGS } = require("../../Configs/Constants");
+
 const UserController = {
   getUserById: async (req, res) => {
     try {
@@ -19,7 +21,7 @@ const UserController = {
       res.status(200).json(data[0]);
     } catch (error) {
       console.log(error);
-      res.status(500).json({ message: "Internal Error" });
+      res.status(500).json({ message: ERROR_MSGS.INTERNAL_SERVER_ERROR });
     }
   },
   getUsersInList: async (req, res) => {
@@ -40,7 +42,7 @@ const UserController = {
       res.status(200).json(data);
     } catch (error) {
       console.log(error);
-      res.status(500).json({ message: "Internal Error" });
+      res.status(500).json({ message: ERROR_MSGS.INTERNAL_SERVER_ERROR });
     }
   },
   signup: async (req, res) => {
@@ -58,7 +60,7 @@ const UserController = {
       res.status(200).json(data[0]);
     } catch (error) {
       console.log(error);
-      res.status(500).json({ message: "Internal Error" });
+      res.status(500).json({ message: ERROR_MSGS.INTERNAL_SERVER_ERROR });
     }
   },
 };

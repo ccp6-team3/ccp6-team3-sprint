@@ -1,5 +1,7 @@
 require("dotenv").config();
 const knex = require("../../db/knex");
+const { ERROR_MSGS } = require("../../Configs/Constants");
+
 const ListController = {
   getAllLists: async (req, res) => {
     try {
@@ -14,7 +16,7 @@ const ListController = {
       res.status(200).json(data);
     } catch (error) {
       console.log(error);
-      res.status(500).json({ message: "Internal Error" });
+      res.status(500).json({ message: ERROR_MSGS.INTERNAL_SERVER_ERROR });
     }
   },
   getUserLists: async (req, res) => {
@@ -32,7 +34,7 @@ const ListController = {
       res.status(200).json(data);
     } catch (error) {
       console.log(error);
-      res.status(500).json({ message: "Internal Error" });
+      res.status(500).json({ message: ERROR_MSGS.INTERNAL_SERVER_ERROR });
     }
   },
   getItemsByListId: async (req, res) => {
@@ -51,7 +53,7 @@ const ListController = {
       res.status(200).json(data);
     } catch (error) {
       console.log(error);
-      res.status(500).json({ message: "Internal Error" });
+      res.status(500).json({ message: ERROR_MSGS.INTERNAL_SERVER_ERROR });
     }
   },
   postList: async (req, res) => {
@@ -67,7 +69,7 @@ const ListController = {
       res.status(200).json(data[0]);
     } catch (error) {
       console.log(error);
-      res.status(500).json({ message: "Internal Error" });
+      res.status(500).json({ message: ERROR_MSGS.INTERNAL_SERVER_ERROR });
     }
   },
   postItem: async (req, res) => {
@@ -85,7 +87,7 @@ const ListController = {
       res.status(200).json(data[0]);
     } catch (error) {
       console.log(error);
-      res.status(500).json({ message: "Internal Error" });
+      res.status(500).json({ message: ERROR_MSGS.INTERNAL_SERVER_ERROR });
     }
   },
   postUser: async (req, res) => {
@@ -103,7 +105,7 @@ const ListController = {
       res.status(200).json(data[0]);
     } catch (error) {
       console.log(error);
-      res.status(500).json({ message: "Internal Error" });
+      res.status(500).json({ message: ERROR_MSGS.INTERNAL_SERVER_ERROR });
     }
   },
   putItem: async (req, res) => {
@@ -124,7 +126,7 @@ const ListController = {
       res.status(200).json(data[0]);
     } catch (error) {
       console.log(error);
-      res.status(500).json({ message: "Internal Error" });
+      res.status(500).json({ message: ERROR_MSGS.INTERNAL_SERVER_ERROR });
     }
   },
   deleteList: async (req, res) => {
@@ -139,7 +141,7 @@ const ListController = {
       res.status(200).json(data[0]);
     } catch (error) {
       console.log(error);
-      res.status(500).json({ message: "Internal Error" });
+      res.status(500).json({ message: ERROR_MSGS.INTERNAL_SERVER_ERROR });
     }
   },
   deleteItemFromList: async (req, res) => {
@@ -154,7 +156,7 @@ const ListController = {
       res.status(200).json(data[0]);
     } catch (error) {
       console.log(error);
-      res.status(500).json({ message: "Internal Error" });
+      res.status(500).json({ message: ERROR_MSGS.INTERNAL_SERVER_ERROR });
     }
   },
   deleteUserFromList: async (req, res) => {
@@ -169,7 +171,7 @@ const ListController = {
       res.status(200).json(data[0]);
     } catch (error) {
       console.log(error);
-      res.status(500).json({ message: "Internal Error" });
+      res.status(500).json({ message: ERROR_MSGS.INTERNAL_SERVER_ERROR });
     }
   },
 };
