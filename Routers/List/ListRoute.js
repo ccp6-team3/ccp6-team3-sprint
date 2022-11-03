@@ -7,5 +7,6 @@ router.get("/:userid", list_ctrl.getUserLists);
 router.get("/:listid/items", list_ctrl.getItemsByListId);
 router.post("/", list_ctrl.postList);
 router.post("/item", list_ctrl.postItem);
+router.post("/user", list_ctrl.postUser);
 // router.delete("/:userid"); // DELETE/user/1
 module.exports = router;

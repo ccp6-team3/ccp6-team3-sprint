@@ -18,8 +18,6 @@ app.use((req, res, next) => {
 app.use("/user", userRoutes);
 app.use("/list", listRoutes);
 
-const { addItemsToList, addUserTolist } = require("./server/handler/knex.post");
-
 const {
   deleteUser,
   deleteList,

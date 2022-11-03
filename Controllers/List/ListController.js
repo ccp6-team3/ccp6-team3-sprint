@@ -88,5 +88,23 @@ const ListController = {
       res.status(500).json({ message: "Internal Error" });
     }
   },
+  postUser: async (req, res) => {
+    try {
+      const { listid, userid } = req.body;
+      console.log(listid, userid);
+      const newUserInList = {
+        list_id: listid,
+        user_id: userid,
+      };
+      const data = await knex("users_in_list")
+        .returning(["*"])
+        .insert(newUserInList);
+      console.log(data);
+      res.status(200).json(data[0]);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ message: "Internal Error" });
+    }
+  },
 };
 module.exports = ListController;
