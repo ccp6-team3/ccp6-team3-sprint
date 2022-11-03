@@ -106,6 +106,27 @@ const ListController = {
       res.status(500).json({ message: "Internal Error" });
     }
   },
+  putItem: async (req, res) => {
+    try {
+      const { listid, itemName: curItemName } = req.params;
+      const { itemName, quantity, purchaseStatus } = req.body;
+      console.log(listid, curItemName, itemName, quantity, purchaseStatus);
+      const itemNewInfo = {
+        item_name: itemName,
+        quantity: quantity,
+        purchased: purchaseStatus,
+      };
+      const data = await knex("items_in_list")
+        .returning(["*"])
+        .update(itemNewInfo)
+        .where({ list_id: listid, item_name: curItemName });
+      console.log(data);
+      res.status(200).json(data[0]);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ message: "Internal Error" });
+    }
+  },
   deleteList: async (req, res) => {
     try {
       const { listid } = req.params;

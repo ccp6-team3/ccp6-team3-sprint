@@ -18,8 +18,6 @@ app.use((req, res, next) => {
 app.use("/user", userRoutes);
 app.use("/list", listRoutes);
 
-const { updateItemState } = require("./server/handler/knex.put");
-
 //GET METHOD
 
 //app.get tests
