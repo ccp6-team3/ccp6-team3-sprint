@@ -6,6 +6,7 @@ const cors = require("cors");
 const timeout = require("connect-timeout");
 const userRoutes = require("./Routers/User/UserRoute");
 const listRoutes = require("./Routers/List/ListRoute");
+const itemRoutes = require("./Routers/Item/ItemRoute");
 
 app.use(cors());
 app.use(express.json());
@@ -17,10 +18,9 @@ app.use((req, res, next) => {
 
 app.use("/user", userRoutes);
 app.use("/list", listRoutes);
-app.use("/item", userRoutes);
+app.use("/item", itemRoutes);
 
 const {
-  getAllItemsFromList,
   getAllUsersInList,
   getAllListsOnUser,
 } = require("./server/handler/knex.get");

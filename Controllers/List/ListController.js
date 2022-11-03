@@ -3,7 +3,13 @@ const knex = require("../../db/knex");
 const ListController = {
   getAllList: async (req, res) => {
     try {
-      const data = await knex.select("*").from("lists");
+      const data = await knex
+        .select({
+          listid: "id",
+          listName: "list_name",
+          listOwner: "list_owner",
+        })
+        .from("lists");
       console.log(data);
       res.status(200).json(data);
     } catch (error) {
