@@ -43,5 +43,23 @@ const UserController = {
       res.status(500).json({ message: "Internal Error" });
     }
   },
+  signup: async (req, res) => {
+    try {
+      const { userName, userEmail, userProPic, userPassword } = req.body;
+      console.log(userName, userEmail, userProPic, userPassword);
+      const newUser = {
+        user_name: userName,
+        user_email: userEmail,
+        user_pro_pic: userProPic,
+        user_password: userPassword,
+      };
+      const data = await knex("users").returning(["id"]).insert(newUser);
+      console.log(data);
+      res.status(200).json(data[0]);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ message: "Internal Error" });
+    }
+  },
 };
 module.exports = UserController;

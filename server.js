@@ -22,7 +22,6 @@ app.use("/item", itemRoutes);
 
 const {
   addList,
-  addUser,
   addItemsToList,
   addUserTolist,
 } = require("./server/handler/knex.post");
