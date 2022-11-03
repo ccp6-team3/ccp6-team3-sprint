@@ -1,7 +1,7 @@
 require("dotenv").config();
-const knex = require("../../../db/knex");
+const knex = require("../../db/knex");
 const UserController = {
-  getUserData: async (req, res) => {
+  getUserById: async (req, res) => {
     try {
       const { userid } = req.params;
       console.log(userid);
@@ -16,7 +16,7 @@ const UserController = {
         .from("users")
         .where("id", "=", userid);
       console.log(data);
-      res.status(200).json({ message: "success" });
+      res.status(200).json(data[0]);
     } catch (error) {
       console.log(error);
       res.status(500).json({ message: "Internal Error" });
