@@ -5,8 +5,8 @@ module.exports = {
 		client: "postgresql",
 		connection: {
 			database: process.env.PSQL_DATABASE || "geteat",
-			user: process.env.PSQL_USER || "kenkinoshita",
-			password: process.env.PSQL_PASSWORD,
+			user: process.env.PSQL_USER || "postgres",
+			password: process.env.PSQL_PASSWORD || "password",
 		},
 		migrations: {
 			directory: "./migrations",

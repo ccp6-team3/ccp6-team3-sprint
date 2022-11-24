@@ -25,7 +25,7 @@ module.exports = {
 			list_id: id,
 			item_name: data.itemName,
 			quantity: data.quantity,
-			purchased: false,
+			purchased: data.purchased,
 		});
 	},
 

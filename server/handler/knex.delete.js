@@ -3,15 +3,15 @@ const knex = require("../../db/knex");
 module.exports = {
     deleteList(listId) {
         return knex("lists")
-            .where("list_id", "=", listId)
+            .where("id", "=", listId)
             .del()
             .then(() => console.log('list deleted'))
     },
 
-    deleteItemInList(data) {
+    deleteItemInList(listId,itemName) {
         return knex("items_in_list")
-            .where("list_id", "=", data.listId)
-            .where("item_name", "=", data.itemName)
+            .where("list_id", "=", listId)
+            .where("item_name", "=", itemName)
             .del()
             .then(() => console.log('item deleted'))
     },
